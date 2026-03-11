@@ -1,0 +1,86 @@
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://abdourahmane.com/ontology/AssetIndividuals1> rdf:type owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/AssetsRoleCatalog.owl> ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/IdentityUsersGroupsRoles.owl> ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/NetworkGeo.owl> .
+
+############################
+### ASSET ROLES
+############################
+
+:linux_workstation rdf:type :AssetRole .
+:windows_workstation rdf:type :AssetRole .
+:server_role rdf:type :AssetRole .
+
+############################
+### PROCESSES
+############################
+
+:cron rdf:type :Process ;
+    rdfs:label "/usr/sbin/cron" .
+
+:chpasswd rdf:type :Process ;
+    rdfs:label "/usr/sbin/chpasswd" .
+
+:services_exe rdf:type :Process ;
+    rdfs:label "C:\\Windows\\System32\\services.exe" .
+
+:svchost_exe rdf:type :Process ;
+    rdfs:label "C:\\Windows\\System32\\svchost.exe" .
+
+:sshd rdf:type :Process ;
+    rdfs:label "/usr/sbin/sshd" .
+
+############################
+### ASSETS
+############################
+
+:localhost_localdomain rdf:type :LinuxWorkstation ;
+    :assetHasRole :linux_workstation ;
+    :ownedByGroup :IT ;
+    :locatedAt :HQ .
+
+:DESKTOP_MDNNEJF rdf:type :WindowsWorkstation ;
+    :assetHasRole :windows_workstation ;
+    :ownedByGroup :IT ;
+    :locatedAt :HQ .
+
+:SRV_DB_01 rdf:type :Server ;
+    :assetHasRole :server_role ;
+    :ownedByGroup :FINANCE ;
+    :locatedAt :HQ .
+
+############################
+### EXPECTED TECHNICAL ACCOUNTS
+############################
+
+:linux_workstation :expectedTechnicalAccount :root , :env_admin .
+
+:windows_workstation :expectedTechnicalAccount :SYSTEM ,
+                                      :LOCAL_SERVICE ,
+                                      :NETWORK_SERVICE .
+
+:server_role :expectedTechnicalAccount :SYSTEM ,
+                                      :svc_backup ,
+                                      :root .
+
+############################
+### EXPECTED SERVICE PROCESSES
+############################
+
+:linux_workstation :expectedServiceProcess :cron , :chpasswd .
+
+:windows_workstation :expectedServiceProcess :services_exe , :svchost_exe .
+
+:server_role :expectedServiceProcess :services_exe , :sshd .
+
+############################
+### SITES
+############################
+
+:HQ rdf:type :Site .
