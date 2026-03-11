@@ -1,0 +1,60 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/PolicyIndividuals> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/Policies.owl> .
+
+############################
+### PROPERTIES
+############################
+
+:description a owl:DatatypeProperty .
+
+:recurrenceThreshold a owl:DatatypeProperty .
+
+:recurrenceWindowMinutes a owl:DatatypeProperty .
+
+:hasEventType a owl:ObjectProperty .
+
+############################
+### CLASSES
+############################
+
+:AuthFailurePolicy a owl:Class .
+
+:RecurrentEventPolicy a owl:Class .
+
+############################
+### INDIVIDUALS
+############################
+
+:AuthFailurePolicy a owl:NamedIndividual , :AuthFailurePolicy ;
+    :description "Politique de triage des échecs d'authentification avec seuils de récurrence et exceptions contextuelles." ;
+    :recurrenceThreshold 4 ;
+    :recurrenceWindowMinutes 5 .
+
+:RecurrentEventsPolicy a owl:NamedIndividual , :RecurrentEventPolicy ;
+    :description "Politique générique de détection d'événements répétés (auth, accès, process, etc.)." ;
+    :recurrenceThreshold 4 ;
+    :recurrenceWindowMinutes 5 .
+
+:EF_event_type rdfs:label "event_type" .
+
+:EF_host rdfs:label "host" .
+
+:EF_user rdfs:label "user" .
+
+:Rule_4625 :hasEventType :authentication_failed .
+
+:Rule_AuthFail_Group :hasEventType :authentication_failed .
+
+:Rule_AuthFailureText :hasEventType :authentication_failed .
+
+:Rule_LoginFailed :hasEventType :authentication_failed .
+
+:authentication_failed rdfs:label "authentication_failed" .

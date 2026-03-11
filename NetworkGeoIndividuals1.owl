@@ -1,0 +1,69 @@
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://abdourahmane.com/ontology/NetworkGeoIndividuals> rdf:type owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/NetworkGeo.owl> .
+
+############################
+### PROPERTIES
+############################
+
+:hasCIDR rdf:type owl:ObjectProperty .
+
+:allowedCountry rdf:type owl:ObjectProperty .
+
+############################
+### NETWORK ZONES
+############################
+
+:OfficeCIDR_Zone rdf:type :OfficeCIDR .
+
+:TrustedVPN_Zone rdf:type :TrustedVPN .
+
+:ExternalAllowlist_Zone rdf:type :ExternalAllowlist .
+
+############################
+### CIDR BLOCKS
+############################
+
+:CIDR_192_168_1_0_24 rdf:type :CIDRBlock ;
+    rdfs:label "192.168.1.0/24" .
+
+:CIDR_10_10_0_0_16 rdf:type :CIDRBlock ;
+    rdfs:label "10.10.0.0/16" .
+
+:CIDR_203_0_113_0_28 rdf:type :CIDRBlock ;
+    rdfs:label "203.0.113.0/28" .
+
+:CIDR_8_8_8_8_32 rdf:type :CIDRBlock ;
+    rdfs:label "8.8.8.8/32" .
+
+############################
+### RELATIONS ZONE → CIDR
+############################
+
+:OfficeCIDR_Zone :hasCIDR :CIDR_192_168_1_0_24 ,
+                             :CIDR_10_10_0_0_16 .
+
+:TrustedVPN_Zone :hasCIDR :CIDR_203_0_113_0_28 .
+
+:ExternalAllowlist_Zone :hasCIDR :CIDR_8_8_8_8_32 .
+
+############################
+### COUNTRIES
+############################
+
+:CA rdf:type :Country ;
+    rdfs:label "Canada" .
+
+:US rdf:type :Country ;
+    rdfs:label "United States" .
+
+############################
+### ORGANIZATION GEO RULES
+############################
+
+:ExampleCorp :allowedCountry :CA , :US .

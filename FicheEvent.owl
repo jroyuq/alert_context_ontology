@@ -1,0 +1,56 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/FicheEvent> a owl:Ontology .
+
+############################
+### OBJECT PROPERTIES
+############################
+
+:eventHasAsset a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Asset .
+
+:eventHasProcess a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Process .
+
+:eventHasUser a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :User .
+
+############################
+### DATA PROPERTIES
+############################
+
+:eventHasDestinationIP a owl:DatatypeProperty ;
+    rdfs:domain :Event ;
+    rdfs:range xsd:string .
+
+:eventHasSourceIP a owl:DatatypeProperty ;
+    rdfs:domain :Event ;
+    rdfs:range xsd:string .
+
+:eventHasTimestamp a owl:DatatypeProperty ;
+    rdfs:domain :Event ;
+    rdfs:range xsd:dateTime .
+
+############################
+### CLASSES
+############################
+
+:Asset a owl:Class .
+
+:Process a owl:Class .
+
+:User a owl:Class .
+
+:Event a owl:Class .
+
+:AuthenticationEvent a owl:Class ;
+    rdfs:subClassOf :Event .

@@ -1,0 +1,91 @@
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://abdourahmane.com/ontology/OrganizationTimeIndividuals> rdf:type owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/OrganizationTime.owl> .
+
+############################
+### PROPERTIES
+############################
+
+:hasSchedule rdf:type owl:ObjectProperty .
+
+############################
+### ORGANIZATION
+############################
+
+:ExampleCorp rdf:type :Organization ;
+    rdfs:label "ExampleCorp" ;
+    :hasTimezone :America_Toronto ;
+    :hasBusinessHours :BH_ExampleCorp .
+
+############################
+### TIMEZONE
+############################
+
+:America_Toronto rdf:type :Timezone ;
+    rdfs:label "America/Toronto" .
+
+############################
+### BUSINESS HOURS
+############################
+
+:BH_ExampleCorp rdf:type :BusinessHours ;
+    :hasHoliday :Holiday_2025_12_25 ,
+                :Holiday_2025_12_26 ;
+    :hasSchedule :MonSchedule ,
+                 :TueSchedule ,
+                 :WedSchedule ,
+                 :ThuSchedule ,
+                 :FriSchedule .
+
+############################
+### WEEKDAY SCHEDULES
+############################
+
+:MonSchedule rdf:type :WeekdaySchedule ;
+    rdfs:label "Monday" ;
+    :windowStart "08:30:00"^^xsd:time ;
+    :windowEnd   "18:30:00"^^xsd:time .
+
+:TueSchedule rdf:type :WeekdaySchedule ;
+    rdfs:label "Tuesday" ;
+    :windowStart "08:30:00"^^xsd:time ;
+    :windowEnd   "18:30:00"^^xsd:time .
+
+:WedSchedule rdf:type :WeekdaySchedule ;
+    rdfs:label "Wednesday" ;
+    :windowStart "08:30:00"^^xsd:time ;
+    :windowEnd   "18:30:00"^^xsd:time .
+
+:ThuSchedule rdf:type :WeekdaySchedule ;
+    rdfs:label "Thursday" ;
+    :windowStart "08:30:00"^^xsd:time ;
+    :windowEnd   "18:30:00"^^xsd:time .
+
+:FriSchedule rdf:type :WeekdaySchedule ;
+    rdfs:label "Friday" ;
+    :windowStart "08:30:00"^^xsd:time ;
+    :windowEnd   "17:30:00"^^xsd:time .
+
+############################
+### HOLIDAYS
+############################
+
+:Holiday_2025_12_25 rdf:type :Holiday ;
+    rdfs:label "2025-12-25" .
+
+:Holiday_2025_12_26 rdf:type :Holiday ;
+    rdfs:label "2025-12-26" .
+
+############################
+### MAINTENANCE WINDOWS
+############################
+
+:MW_2025_10_20 rdf:type :MaintenanceWindow ;
+    :windowStart "2025-10-20T22:00:00-04:00"^^xsd:dateTime ;
+    :windowEnd   "2025-10-21T02:00:00-04:00"^^xsd:dateTime ;
+    rdfs:comment "Nightly patching" .

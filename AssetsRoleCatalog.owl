@@ -1,0 +1,61 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/AssetsRoleCatalog> a owl:Ontology .
+
+############################
+### OBJECT PROPERTIES
+############################
+
+:assetHasRole a owl:ObjectProperty ;
+  rdfs:domain :Asset ;
+  rdfs:range :AssetRole .
+
+:expectedServiceProcess a owl:ObjectProperty ;
+  rdfs:domain :AssetRole ;
+  rdfs:range :Process .
+
+:expectedTechnicalAccount a owl:ObjectProperty ;
+  rdfs:domain :AssetRole ;
+  rdfs:range :ServiceAccount .
+
+:locatedAt a owl:ObjectProperty ;
+  rdfs:domain :Asset ;
+  rdfs:range :Site .
+
+:ownedByGroup a owl:ObjectProperty ;
+  rdfs:domain :Asset ;
+  rdfs:range :Group .
+
+############################
+### CLASSES
+############################
+
+:Asset a owl:Class .
+
+:AssetRole a owl:Class .
+
+:Group a owl:Class .
+
+:ServiceAccount a owl:Class .
+
+:Process a owl:Class .
+
+:Site a owl:Class .
+
+:Workstation a owl:Class ;
+  rdfs:subClassOf :Asset .
+
+:LinuxWorkstation a owl:Class ;
+  rdfs:subClassOf :Workstation .
+
+:WindowsWorkstation a owl:Class ;
+  rdfs:subClassOf :Workstation .
+
+:Server a owl:Class ;
+  rdfs:subClassOf :Asset .

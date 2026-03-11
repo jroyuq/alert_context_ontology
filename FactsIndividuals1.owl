@@ -1,0 +1,50 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/FactsIndividuals> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/FactsDomainKnowledge.owl> ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/IdentityUsersGroupsRoles.owl> ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/Policies.owl> .
+
+############################
+### PROPERTIES
+############################
+
+:hasEventType a owl:ObjectProperty .
+
+:requiresVerificationForGroup a owl:ObjectProperty .
+
+:sensitive a owl:DatatypeProperty .
+
+############################
+### CLASSES
+############################
+
+:SensitiveAction a owl:Class .
+
+############################
+### INDIVIDUALS
+############################
+
+:password_change a owl:NamedIndividual, :SensitiveAction ;
+    :requiresVerificationForGroup :FINANCE , :HR ;
+    :sensitive true ;
+    rdfs:comment "Password change events requiring verification for sensitive groups." .
+
+:sudo_actions a owl:NamedIndividual, :SensitiveAction ;
+    :requiresVerificationForGroup :FINANCE , :GUEST , :HR ;
+    :sensitive true ;
+    rdfs:comment "Sudo or privilege escalation actions requiring review." .
+
+:Alert_PasswordChange a owl:NamedIndividual ;
+    :hasEventType :authentication_failed ;
+    rdfs:comment "Alert triggered when password change occurs in sensitive context." .
+
+:Alert_Sudo a owl:NamedIndividual ;
+    :hasEventType :authentication_failed ;
+    rdfs:comment "Alert triggered for sudo actions requiring review." .

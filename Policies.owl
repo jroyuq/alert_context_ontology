@@ -1,0 +1,37 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/Policies> a owl:Ontology .
+
+############################
+### DATA PROPERTIES
+############################
+
+:description a owl:DatatypeProperty ;
+    rdfs:domain :Policy ;
+    rdfs:range xsd:string .
+
+:recurrenceThreshold a owl:DatatypeProperty ;
+    rdfs:domain :RecurrentEventPolicy ;
+    rdfs:range xsd:integer .
+
+:recurrenceWindowMinutes a owl:DatatypeProperty ;
+    rdfs:domain :RecurrentEventPolicy ;
+    rdfs:range xsd:integer .
+
+############################
+### CLASSES
+############################
+
+:Policy a owl:Class .
+
+:AuthFailurePolicy a owl:Class ;
+    rdfs:subClassOf :Policy .
+
+:RecurrentEventPolicy a owl:Class ;
+    rdfs:subClassOf :Policy .

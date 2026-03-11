@@ -1,0 +1,163 @@
+@base <http://abdourahmane.com/ontology#> .
+@prefix : <http://abdourahmane.com/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://abdourahmane.com/ontology/IdentityIndividuals> a owl:Ontology ;
+    owl:imports <https://raw.githubusercontent.com/BenYoussouf01/Ontologie/main/IdentityUsersGroupsRoles.owl> .
+
+############################
+### PROPERTIES
+############################
+
+:allowed_from_external a owl:DatatypeProperty .
+
+:allowed_out_of_hours a owl:DatatypeProperty .
+
+:canRemote a owl:DatatypeProperty .
+
+:isTechnical a owl:DatatypeProperty .
+
+:belongsToGroup a owl:ObjectProperty .
+
+:userHasRole a owl:ObjectProperty .
+
+############################
+### CLASSES
+############################
+
+:Group a owl:Class .
+:Role a owl:Class .
+:ServiceAccount a owl:Class .
+:User a owl:Class .
+
+############################
+### INDIVIDUALS
+############################
+
+:ADMINS a owl:NamedIndividual, :Group ;
+    :allowed_from_external true ;
+    :allowed_out_of_hours true ;
+    :canRemote true .
+
+:ARTUser a owl:NamedIndividual, :User ;
+    :belongsToGroup :FINANCE ;
+    :userHasRole :finance_analyst .
+
+:FINANCE a owl:NamedIndividual, :Group ;
+    :allowed_from_external false ;
+    :allowed_out_of_hours false ;
+    :canRemote false .
+
+:HR a owl:NamedIndividual, :Group ;
+    :allowed_from_external false ;
+    :allowed_out_of_hours false ;
+    :canRemote false .
+
+:IT a owl:NamedIndividual, :Group ;
+    :allowed_from_external true ;
+    :allowed_out_of_hours true ;
+    :canRemote true .
+
+:LOCAL_SERVICE a owl:NamedIndividual, :ServiceAccount ;
+    :belongsToGroup :SERVICE_ACCOUNTS ;
+    :userHasRole :system .
+
+:NETWORK_SERVICE a owl:NamedIndividual, :ServiceAccount ;
+    :belongsToGroup :SERVICE_ACCOUNTS ;
+    :userHasRole :system .
+
+:SERVICE_ACCOUNTS a owl:NamedIndividual, :Group ;
+    :allowed_from_external false ;
+    :allowed_out_of_hours true ;
+    :canRemote false ;
+    :isTechnical true .
+
+:SYSTEM a owl:NamedIndividual, :ServiceAccount ;
+    :belongsToGroup :SERVICE_ACCOUNTS ;
+    :userHasRole :system .
+
+:accountant a owl:NamedIndividual, :Role .
+
+:acct_1 a owl:NamedIndividual, :User ;
+    :belongsToGroup :FINANCE ;
+    :userHasRole :accountant .
+
+:acct_manager a owl:NamedIndividual, :User ;
+    :belongsToGroup :FINANCE ;
+    :userHasRole :finance_manager .
+
+:art a owl:NamedIndividual, :User ;
+    :belongsToGroup :FINANCE ;
+    :userHasRole :finance_support .
+
+:backup_service a owl:NamedIndividual, :Role .
+
+:cto a owl:NamedIndividual, :User ;
+    :belongsToGroup :ADMINS ;
+    :userHasRole :exec .
+
+:env_admin a owl:NamedIndividual, :User ;
+    :belongsToGroup :IT ;
+    :userHasRole :linux_admin , :windows_admin .
+
+:exec a owl:NamedIndividual, :Role .
+
+:finance_analyst a owl:NamedIndividual, :Role .
+
+:finance_manager a owl:NamedIndividual, :Role .
+
+:finance_support a owl:NamedIndividual, :Role .
+
+:helpdesk01 a owl:NamedIndividual, :User ;
+    :belongsToGroup :IT ;
+    :userHasRole :support .
+
+:hr_1 a owl:NamedIndividual, :User ;
+    :belongsToGroup :HR ;
+    :userHasRole :hr_associate .
+
+:hr_associate a owl:NamedIndividual, :Role .
+
+:hr_manager a owl:NamedIndividual, :Role, :User ;
+    :belongsToGroup :HR ;
+    :userHasRole :hr_manager .
+
+:it_admin a owl:NamedIndividual, :User ;
+    :belongsToGroup :ADMINS , :IT ;
+    :userHasRole :sysadmin .
+
+:linux_admin a owl:NamedIndividual, :Role .
+
+:operations a owl:NamedIndividual, :Role .
+
+:ops_lead a owl:NamedIndividual, :User ;
+    :belongsToGroup :IT ;
+    :userHasRole :operations .
+
+:root a owl:NamedIndividual, :User ;
+    :belongsToGroup :IT ;
+    :userHasRole :root_admin .
+
+:root_admin a owl:NamedIndividual, :Role .
+
+:sec_lead a owl:NamedIndividual, :User ;
+    :belongsToGroup :ADMINS ;
+    :userHasRole :security_admin .
+
+:security_admin a owl:NamedIndividual, :Role .
+
+:support a owl:NamedIndividual, :Role .
+
+:svc_backup a owl:NamedIndividual, :ServiceAccount ;
+    :belongsToGroup :SERVICE_ACCOUNTS ;
+    :userHasRole :backup_service .
+
+:sysadmin a owl:NamedIndividual, :Role .
+
+:system a owl:NamedIndividual, :Role .
+
+:windows_admin a owl:NamedIndividual, :Role .
